@@ -19,8 +19,8 @@ public final class Node {
 	protected HashMap<String, Integer> inputs;
 
 	protected Node() {
-		nodeId = nodeIdCounter++;
 		inputs = new HashMap<String, Integer>(8);
+		nodeId = nodeIdCounter++;
 	}
 
 	/**
@@ -50,10 +50,16 @@ public final class Node {
 		return NodePool.getNode(inputs.get(relation));
 	}
 
-	public Node setFunction(Function function) {
-		function.setNode(this.nodeId);
-		this.function = function;
-		return this;
+	public float get(float x, float y) {
+		return function.get(x, y);
+	}
+
+	public float get(float x, float y, float z) {
+		return function.get(x, y, z);
+	}
+
+	public float get(float x, float y, float z, float w) {
+		return function.get(x, y, z, w);
 	}
 
 }

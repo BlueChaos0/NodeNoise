@@ -9,7 +9,6 @@ import java.io.File;
 
 public class SimplexNoiseTest
 {
-
 	@Test
 	public void noiseTest() throws Exception
 	{
