@@ -9,18 +9,7 @@ import java.util.List;
 public class NodePool
 {
 
-	protected static int DEFAULT_MAX_NODES = 32;
-	protected List<Node> nodes;
-
-	public NodePool()
-	{
-		this(DEFAULT_MAX_NODES);
-	}
-
-	public NodePool(int maxNodes)
-	{
-		nodes = new ArrayList<Node>(maxNodes);
-	}
+	protected static List<Node> nodes = new ArrayList<Node>(32);
 
 	/**
 	 * Prepares and returns a new {@link com.vorsutusgames.nn.nodes.Node}. Use this instead of <code>new
@@ -28,14 +17,14 @@ public class NodePool
 	 *
 	 * @return A new Node
 	 */
-	public Node newNode()
+	public static Node newNode()
 	{
-		Node node = new Node(this);
+		Node node = new Node();
 		nodes.add(node.nodeId, node);
 		return node;
 	}
 
-	public Node getNode(int id)
+	public static Node getNode(int id)
 	{
 		return nodes.get(id);
 	}
