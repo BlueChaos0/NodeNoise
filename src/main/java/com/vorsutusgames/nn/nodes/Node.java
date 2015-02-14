@@ -9,8 +9,6 @@ import java.util.HashMap;
  */
 public final class Node {
 
-	public static String RELATION_BASE = "base";
-
 	private static int nodeIdCounter = 0;
 
 	public final int nodeId;
@@ -30,13 +28,18 @@ public final class Node {
 	 * Inputs are used for influencing the <code>get()</code> functions.
 	 * Different inputs will be used differently based on their relation. The
 	 * simplest relation is the <code>RELATION_BASE</code>, which is a static
-	 * field of this <code>Node</code> class.
+	 * field of the <code>Function</code> class.
 	 *
 	 * @param relation How the node will interact with this input
 	 * @param id The id of the node to add as an input
 	 * @return returns Self
 	 */
 	public Node setInput(String relation, int id) {
+		// Throw error if node with specified id does not exist
+		if(NodePool.getNode(id) == null)
+			throw new IllegalArgumentException("Cannot find Node with id " +
+					id);
+		// Else continue setting the input
 		inputs.put(relation, id);
 		return this;
 	}
@@ -46,8 +49,8 @@ public final class Node {
 	 * retrieved
 	 * @return the input Node that shares <code>relation</code> with this Node
 	 */
-	public Node getInput(String relation) {
-		return NodePool.getNode(inputs.get(relation));
+	public Function getInput(String relation) {
+		return NodePool.getNode(inputs.get(relation)).function;
 	}
 
 	public float get(float x, float y) {

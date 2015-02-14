@@ -1,6 +1,5 @@
 package com.vorsutusgames.nn.functions;
 
-import com.vorsutusgames.nn.nodes.Node;
 import com.vorsutusgames.nn.nodes.NodePool;
 
 /**
@@ -8,6 +7,8 @@ import com.vorsutusgames.nn.nodes.NodePool;
  */
 public abstract class Function
 {
+	public static String RELATION_BASE = "base";
+
 	protected int nodeId;
 
 	public abstract float get(float x, float y);
@@ -21,7 +22,7 @@ public abstract class Function
 		this.nodeId = nodeId;
 	}
 
-	protected final Node getInput(String relation) {
+	protected final Function getInput(String relation) {
 		return NodePool.getNode(nodeId).getInput(relation);
 	}
 }
